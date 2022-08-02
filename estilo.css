@@ -1,0 +1,269 @@
+*{
+    margin: 0;
+}
+body{
+    background: url("img/fundo.jpg") repeat-x;
+    background-size: 100% 200px;
+
+    font-size: 1.5em;
+
+}
+#main{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: auto;   
+
+}
+header{
+   
+    margin-bottom: 3% ;
+    width: 100%;
+    height: 30vh;
+ 
+}
+
+
+h1, h4{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+   
+}
+h1{
+    color: rgb(90, 75, 48);
+    font-size: 4em;
+
+   
+}
+h2{
+    font-size: 2em;
+    color: rgb(90, 75, 48);
+}
+h4{
+    color: rgb(90, 75, 48);
+    margin-left: 7%;
+
+}
+#nav_header{
+    float: right;
+    margin-top: 1.6%;
+    border-radius: 10px;
+    background-color: rgb(80, 71, 56);
+   
+}
+ul{
+    list-style: none;
+}
+li{
+    float: left;
+    padding: 10px;
+    
+}
+a{
+    text-decoration: none;
+}
+li a{
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+   
+   
+}
+li:hover{
+    background-color: rgb(66, 59, 46);
+    border-radius:10px ;
+}
+.conteudo{
+text-align: center;
+}
+
+.img{
+    border: 8px solid #606060;
+    box-shadow: 1px 1px 4px black;
+}
+hgroup h2{
+    color: white;
+    
+}
+hgroup.grupo-img img{
+    width: 80%; 
+    height: 550px ; 
+}
+hgroup.grupo-img{
+    position: relative;
+;
+}
+hgroup.grupo-img figcaption{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    position:absolute;
+    margin-top: 0;   
+    background-color: rgba(0, 0, 0, 0.6) ; 
+    box-sizing: border-box;
+    color: white;
+    width: 80%;
+    height: 550px;
+    left: 10%;
+    text-align: center;
+    transition: opacity 1s;
+}
+
+figcaption.legenda-imagem:hover{  
+    opacity: 1;
+}
+
+/* CONFIGURANDO TABELA */
+
+#tabela{
+    text-align: center;
+   
+}
+#tabela table{
+    border: 1px solid red;
+    border-collapse: collapse;
+    width: 80%;
+    margin: auto;
+    background-color: rgb(248, 240, 228);
+    
+
+}
+#tabela table th{
+    border: 1px solid black;
+    border-bottom: 3px solid #606060;
+    background-color: rgb(250, 173, 71);
+}
+#tabela table td{
+    border: 1px solid black;
+   padding: 5px;
+}
+#tabela table td.codigo{
+    background-color: rgb(250, 173, 71);
+}
+#tabela tr:hover{
+    background-color: rgb(243, 205, 156);
+}
+/* FORMULARIO */
+#formulario{
+    text-align: center;
+    margin: 5%;
+}
+form{
+    width: 80%;
+    border: 1px solid black;
+    margin: auto;
+}
+form input.nome{
+    width: 90%;
+    padding: 10px;
+    margin: 10px;
+    font-size: 1em;
+}
+form input#total{
+    width: 90%;
+    padding: 10px;
+    margin: 10px;
+    font-size: 1em;
+}
+
+form input.button{
+    width: 95%;
+    padding: 10px;
+    margin: 2.5%;
+    font-size: 1em;
+    background-color:orange;
+    color: black;
+    font-weight: bold;
+
+}
+input.button:hover{
+    cursor: pointer;
+    background-color:rgb(168, 111, 5);
+}
+/* CONFIGURANDO O TAMANHO DAS PIZZAS */
+
+input.radio{
+    margin: 20px;
+    padding: 0px;
+    margin-right: 2px;
+}
+fieldset{
+    margin: 15px;
+}
+
+/* CONFIGURANDO OS SABORES DAS PIZZAS */
+
+
+.sabor{
+    
+    width: 100%;
+    
+
+}
+section select {
+    width: 100%;
+    text-align: center;
+    font-size: 1em;
+    padding: 10px;
+}
+/* CONFIGURAÇÕES GERAIS DO FORMULARIO */
+
+
+form{
+    font-weight: bold;
+}
+
+/* CONFIGURAÇÕES DO INPUT NUMBER */
+
+fieldset.qtd-container input{
+    width: 90%;
+    padding: 10px;
+    margin: 10px;
+    font-size: 1em;
+}
+
+/* CONFIRANDO O FILDSET DOS SABORES */
+.saborEscolha{
+    display: flex;
+    flex-direction: column; 
+    width: 36%;
+    float:left;
+   text-align: left;
+ 
+    font-size: 1em;
+   
+}
+.sabores{
+    display:none ;
+  
+  
+}
+.doisSabores{
+    float:right;
+    width: 60%; 
+    margin: 0;
+    display: block;
+    
+}
+.umSabor{
+    
+    float:right;
+    width: 60%; 
+    display: none;
+    
+    
+}
+.select{
+    width: 100%;
+}
+
+#sabores{
+    display: none;
+}
+#saborPastel{
+    display:block ;
+}
+.sabor input{
+    width: 90%;
+}

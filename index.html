@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="estilo.css">
+        
+        <title>Proctics - Restaurante popular</title>
+    </head>
+    <body > 
+        <main id="main">
+            <header>
+                <hgroup>
+                    <a href=""><h1>Proctycs</h1></a>
+                    <h4 class="subtitulo">Sua comida em boas mãos</h4>
+                </hgroup>  
+                
+                <nav id="nav_header">
+                    <ul id="">
+                        <li>
+                            <a href="">Internacional</a>
+                        </li>
+                        <li>
+                            <a href="">Promoções</a>
+                        </li>
+                        <li>
+                            <a href="">simular</a>
+                        </li>
+                        <li>
+                            <a href="">Contato</a>
+                        </li>
+                    </ul>
+                </nav> 
+            </header>
+            <section class="conteudo">
+                <h2>Desde 1998 trazendo alegria ao seu paladar</h2>  
+                <hgroup class="grupo-img">
+                    <figcaption class="legenda-imagem">
+                        <h2>Seja bem vindo ao nosso site</h2>
+                    </figcaption>
+                    <img class="img" src="img/restaurante.jpg"alt="">
+                </hgroup>
+            </section>
+
+            <section id="tabela">
+                <h2>Cardapio</h2>
+                <table>
+                    <thead>
+                        <tr >
+                            <th>Codigo</th>
+                            <th>Sabor</th>
+                            <th>Tamanho M</th>
+                            <th>Tamanho G</th>
+                            <th>Tam M Pastel</th>
+                            <th>Tam G Pastel</th>
+                            <th>Tipo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="foco">
+                            <td class="codigo ">001</td>
+                            <td >Mussarela</td>
+                            <td >24,00 R$</td>
+                            <td >30,00 R$</td>
+                            <td>5,00 R$</td>
+                            <td >8,00 R$</td>
+                            <td>Pastel / Pizza</td>
+                        </tr>
+                        <tr>
+                            <td class="codigo">002</td>
+                            <td>Milho</td>
+                            <td>26,00 R$</td>
+                            <td>34,00 R$</td>
+                            <td> 0,00R$</td>
+                            <td >0,00 R$</td>
+                            <td>Pizza</td>
+                        </tr>
+                        <tr>
+                            <td class="codigo">003</td>
+                            <td>Presunto</td>
+                            <td>25,00 R$</td>
+                            <td>32,00 R$</td>
+                            <td>9,00 R$</td>
+                            <td>17,00 R$</td>
+                            <td>Pizza</td>
+                        </tr>
+                        <tr>
+                            <td class="codigo">004</td>
+                            <td>Calabresa</td>
+                            <td>26,00 R$</td>
+                            <td>31,00 R$</td>
+                            <td>0,00 R$</td>
+                            <td >0,00 R$</td>
+                            <td>Pizza</td>
+                        </tr>
+                        <tr>
+                            <td class="codigo">005</td>
+                            <td>Frango</td>
+                            <td>27,00 R$</td>
+                            <td>34,00 R$</td>
+                            <td>7,00 R$</td>
+                            <td >12,00 R$</d>
+                            <td>Pastel / Pizza</td>
+                        </tr>
+                        <tr>
+                            <td class="codigo">006</td>
+                            <td>Carne</td>
+                            <td>34,00 R$</td>
+                            <td>40,00 R$</td>
+                            <td>11,00 R$</td>
+                            <td >17,00 R$</td>
+                            <td>Pastel / Pizza</td>
+                        </tr>
+                        <tr>
+                            <td class="codigo">007</td>
+                            <td>Frango-Catu</td>
+                            <td>29,00 R$</td>
+                            <td>36,00 R$</td>
+                            <td>9,00 R$</td>
+                            <td >14,00 R$</td>
+                            <td>Pastel / Pizza</td>
+                        </tr>
+                        <tr>
+                            <td class="codigo">008</td>
+                            <td>Vegano</td>
+                            <td>26,00 R$</td>
+                            <td>31,00 R$</td>
+                            <td>8,00 R$</td>
+                            <td >12,00 R$</td>
+                            <td>Pastel</td>
+                        </tr>
+                        <tr>
+                            <td class="codigo">009</td>
+                            <td>Portuguesa</td>
+                            <td>32,00 R$</td>
+                            <td>38,00 R$</td>
+                            <td>9,00 R$</td>
+                            <td >15,00 R$</td>
+                            <td>Pastel / Pizza</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </section>
+            <section id="formulario">
+
+                <h2>Faça seu pedido</h2>
+                <form action="">
+
+
+                    <label for="nome">Nome:</label>
+                    <input type="text" 
+                    class="nome"
+                    id="nome" 
+                    placeholder="Digite o seu nome">
+                    
+                    
+                    <section >
+                        <fieldset class="tipo">
+                            <legend>Tipo</legend>
+
+                         
+                            
+                            <input type="radio"
+                            id="tipoPizza"
+                            class="radio"
+                            name="tipo"
+                            value="1" 
+                            onclick="mostrarOpcao()" ><label onclick="mostrarOpcao()"  for="tipoPizza" >Pizza</label>
+
+                            <input type="radio"
+                            class="radio"
+                            id="pastel"
+                            name="tipo"
+                            value="1" 
+                             onclick="unicaOpcaoPastel()" checked><label for="pastel" >Pastel</label>
+
+                        </fieldset>
+                    </section>
+                    <!--  AQUI SE INICIA A SEÇÃO DOS SABORES-->
+                    <section class="sabores" id="secaoSabores">
+                        <fieldset>
+                            <legend class="subtitulo">Sabores</legend>
+
+                            <section class="saborEscolha">
+                               
+                                    <label for="umSabor" onclick="umSaborPizza()"><input type="radio"
+                                    id="umSabor" 
+                                    class="radio"
+                                    name="sabor"
+                                    value="grande"
+                                    >Um sabor</label>
+        
+                                   <label for="doisSabor" onclick="dois_Sabores()" ><input type="radio"
+                                    id="doisSabor"
+                                    class="radio"
+                                    name="sabor"
+                                    value="medio" 
+                                    >Dois sabor</label>
+                                
+                            </section>
+                            <!--  AQUI SE INICIA A SEÇÃO DE DOIS SABORES-->
+                            <section  id="duoSabor" > 
+                                <section class="doisSabores"> 
+                                    <h4>Primeria metade</h4>     
+
+                                    <select name="" id="metade1" class="select">
+                                        
+                                        <optgroup >
+                                            <option value="" selected disabled>Selecionar Sabor</option>
+                                            <option value="mussarela">Mussarela</option>
+                                            <option value="milho">Milho</option>
+                                            <option value="presunto">Presunto</option>
+                                            <option value="calabresa">Calabresa</option>
+                                            <option value="frango">Frango</option>
+                                            <option value="carne">Carne</option>
+                                            <option value="frango-catupiry">Frango-Catupiry</option>
+                                            <option value="portuguesa">Portuguesa</option>
+                                        </optgroup>
+                                    </select>
+                                </section>
+
+                                <section class="doisSabores">
+
+                                    <h4>Segunda metade</h4>
+                                    <select name="" id="metade2"  class="select">
+                                        <optgroup >
+                                            <option value="" selected disabled>Selecionar Sabor</option>
+                                            <option value="mussarela">Mussarela</option>
+                                            <option value="milho">Milho</option>
+                                            <option value="presunto">Presunto</option>
+                                            <option value="calabresa">Calabresa</option>
+                                            <option value="frango">Frango</option>
+                                            <option value="carne">Carne</option>
+                                            <option value="frango-catupiry">Frango-Catupiry</option>
+                                            <option value="portuguesa">Portuguesa</option>
+                                        </optgroup>
+                                    </select>
+                                </section>
+                            </section>
+                                  <!--  AQUI SE INICIA A SEÇÃO DE UM SABOR-->
+                                <section class="umSabor" id="unicoSaborPizza" >
+                                    <h4>Escolha o sabor</h4>
+                                    <select name="" id="sabor" class="select" >
+                                        <optgroup >
+                                            <option value="" selected disabled>Selecione Sabor</option>
+                                            <option value="mussarela">Mussarela</option>
+                                            <option value="milho">Milho</option>
+                                            <option value="presunto">Presunto</option>
+                                            <option value="calabresa">Calabresa</option>
+                                            <option value="frango">Frango</option>
+                                            <option value="carne">Carne</option>
+                                            <option value="frango-catupiry">Frango-Catupiry</option>
+                                            
+                                            <option value="portuguesa">Portuguesa</option>
+                                        </optgroup>
+                                     </select>
+                                 </fieldset>
+                             </section>
+                             <!-- AQUI SE ENCONTRA A OPÇAO DO PASTEL-->
+                    <section class="sabor" id="opcaoPastel">
+                        <fieldset>
+                            <legend class="subtitulo">Sabor</legend>                        
+                            <select name="" id="saborPastel" >
+                                <optgroup >
+                                    <option value="" selected disabled>Selecione Sabor</option>
+                                    <option value="mussarela">Mussarela</option>
+                                    <option value="presunto">Presunto</option>
+                                    <option value="frango">Frango</option>
+                                    <option value="carne">Carne</option>
+                                    <option value="frango-catupiry">Frango-Catupiry</option>
+                                    <option value="vegano">Vegano</option>
+                                    <option value="portuguesa">Portuguesa</option>
+                                </optgroup>
+                            </select>
+                        </fieldset>
+                    </section>
+                    
+                    <section >
+                        <fieldset class="tamanho">
+                            <legend>Tamanho</legend>
+                            <!-- Id = 'tamanho'-->
+                            <input type="radio"
+                            id="grande"  
+                            class="radio"
+                            name="tamanho"
+                            value="grande"><label for="grande">Grande</label>
+
+                            <input type="radio"
+                            id="media"
+                            class="radio"
+                            name="tamanho"
+                            value="medio" ><label for="media">Media(o)</label>
+
+                        </fieldset>
+                    </section>
+
+                    <section >
+                        <fieldset class="qtd-container">
+                            <legend>Quantidade desejada</legend>
+
+                            <input type="number"
+                            id="qtd"
+                            class="qtd"
+                            name="qtd"
+                            placeholder="informe a quantidade desejada"
+                            min="1"
+                            max="99"
+                            >
+
+                        
+
+                        </fieldset>
+                    </section>
+   
+                
+
+                    <input type="button"  
+                    onclick="calcularTotal()"
+                    value="Verificar Valor"
+                     class="button">
+
+                </form>
+                <section id="resultado" style="display:none; margin-top: 5%;">
+                <h3>Aqui está o resultado do seu pedido!!</h3>
+                    <table id="td1" style="margin:auto;font-size:1em; border: 2px solid black;">
+                        
+                    </table>
+                    <span id="exibirResul1" style="margin-top: 2% ;" ></span>
+                    <span id="exibirResul2" style="margin-top: 2% ;" ></span>
+                    <span id="exibirResul3" style="margin-top: 2% ;" ></span>
+                    <span id="exibirResul4" style="margin-top: 2% ;" ></span>
+                </section>
+            </section>
+            
+            <script src="codigos_JS.js"></script>
+
+
+         
+        </main>
+    </body>
+</html>
