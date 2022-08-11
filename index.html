@@ -282,16 +282,16 @@
                             <legend>Tamanho</legend>
                             <!-- Id = 'tamanho'-->
                             <input type="radio"
-                            id="grande"  
+                            id="Grande"  
                             class="radio"
                             name="tamanho"
-                            value="grande"><label for="grande">Grande</label>
+                            value="grande"><label for="Grande">Grande</label>
 
                             <input type="radio"
-                            id="media"
+                            id="Media"
                             class="radio"
                             name="tamanho"
-                            value="medio" ><label for="media">Media(o)</label>
+                            value="medio" ><label for="Media">Media(o)</label>
 
                         </fieldset>
                     </section>
@@ -317,27 +317,34 @@
                 
 
                     <input type="button"  
-                    onclick="calcularTotal()"
-                    value="Verificar Valor"
+                    onclick="adicionarCarrinho()"
+                    value="Adicionar Ao Carrinho"
                      class="button">
 
                 </form>
                 <section id="resultado" style="display:none; margin-top: 5%;">
-                <h3>Aqui está o resultado do seu pedido!!</h3>
-                    <table id="td1" style="margin:auto;font-size:1em; border: 2px solid black;">
-                        
+                <h3 style="margin-bottom:2%;">Aqui está o resultado do seu pedido!!</h3>
+                    <table class="tabela_resultado" style="font-size:1em ;">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Tipo</th>
+                                <th>Sabor</th>
+                                <th>Tamanho</th>   
+                                <th>Qtd</th>
+                                <th>Preço</th>
+                                <th>Ação</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody id="tbody">
+    
+                        </tbody>
                     </table>
-                    <span id="exibirResul1" style="margin-top: 2% ;" ></span>
-                    <span id="exibirResul2" style="margin-top: 2% ;" ></span>
-                    <span id="exibirResul3" style="margin-top: 2% ;" ></span>
-                    <span id="exibirResul4" style="margin-top: 2% ;" ></span>
                 </section>
             </section>
             
             <script src="codigos_JS.js"></script>
-
-
-         
         </main>
     </body>
 </html>

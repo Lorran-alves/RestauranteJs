@@ -120,16 +120,22 @@ figcaption.legenda-imagem:hover{
     text-align: center;
    
 }
-#tabela table{
-    border: 1px solid red;
+table{
     border-collapse: collapse;
     width: 80%;
     margin: auto;
     background-color: rgb(248, 240, 228);
     
 
+
 }
-#tabela table th{
+.tabela_resultado{
+    font-size: 1.5em;
+}
+.tabela_resultado th{
+    background-color: #cecece;
+}
+ table th{
     border: 1px solid black;
     border-bottom: 3px solid #606060;
     background-color: rgb(250, 173, 71);
@@ -266,4 +272,14 @@ fieldset.qtd-container input{
 }
 .sabor input{
     width: 90%;
+}
+/*ESTILO DE TESTE DA IMG DA TABELA*/
+.lixo:hover {
+   
+    
+    background-color: rgba(243, 23, 23, 0.973);
+   
+   color:white;
+    cursor: pointer;
+    transition: 1s;
 }
