@@ -9,11 +9,8 @@
   let unicoSabor_pizza = document.getElementById("sabor") // UNICO SABOR PIZZA
   let precoTot = 0
   let codigo = 0
-  let lixeiro = document.createComment("img")
-    lixeiro = "img/lixo.png"
-    //AQUI EU DEI UM ID PARA A VARIAVEL QUE VAI SER UTIL NA HORA DA REMOÇÃO DA LINHA DO ARRAY
-    lixeiro.setAttribute = ( 'id', `${codigo}`)
-    console.log(lixeiro.setAttribute = ( 'id', `${codigo}`))
+  
+   
 
   let guardarPedido = Array()
     guardarPedido['id'] = []
@@ -382,6 +379,7 @@ function adicionarCarrinho(){
                 let td_qtd = tr.insertCell()
                 let td_precoTot = tr.insertCell()
                 let td_img = tr.insertCell()
+               
                 td_img.classList.add('lixo')
                 
                 td_id.innerText = guardarPedido['id'][codigo]
@@ -390,16 +388,32 @@ function adicionarCarrinho(){
                 td_tamanho.innerText = guardarPedido['tamanho'][codigo]
                 td_qtd.innerText = guardarPedido['qtd'][codigo]
                 td_precoTot.innerText = guardarPedido['precoTot'][codigo]
-                td_img.innerHTML  = `<img src=${lixeiro}>`
-                //td_img.appendChild(lixo)
+
+                let lixeiro = document.createElement("img")
+                lixeiro.src = "img/lixo.png"
+                
+              
+
+
+                //AQUI EU DEI UM ID PARA A VARIAVEL QUE VAI SER UTIL NA HORA DA REMOÇÃO DA LINHA DO ARRAY
+                lixeiro.setAttribute("id", `${codigo}`)
+                //AQUI EU CRIEI UMA FUNÇAÕ PARA CADA CLICK NO BOTÃO
+                lixeiro.setAttribute("onclick", "deletar(" + codigo + ")")
                
-        
+               
+
+                td_img.appendChild(lixeiro)
+               
+
                 codigo++
                 resultado.style.display = "block"
+
+            
             }
            
             
         }
+        
         mostrarResultado()
     }
     function zeraOpcao(){
@@ -410,6 +424,29 @@ function adicionarCarrinho(){
     }
     zeraOpcao()
 }
+function deletar(codigo){
+    let tbody = document.getElementById("tbody")
+    for(i= 0; i <= guardarPedido['id'].length; i++){
+        i != codigo? codigo: i
+        
+        if(guardarPedido['id'][i] == codigo){
+            alert("parece que deu certo" + i)
+        }
+        
+    }
+    /*
+    console.log(` Esse é o codigo do id ${codigo}`)
+    guardarPedido["id"].shift(codigo)
+    guardarPedido["tipo"].shift(codigo)
+    guardarPedido["sabor"].shift(codigo)
+    guardarPedido["qtd"].shift(codigo)
+    guardarPedido["precoTot"].shift(codigo)
+
+    tbody.deleteRow(codigo)
+    */
+    console.log(guardarPedido)
+}
+     
 
 
 
