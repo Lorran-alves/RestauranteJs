@@ -344,15 +344,16 @@ function adicionarCarrinho(){
         
        
         function adicionarArray(){
-            
+               
                 guardarPedido["id"].push(codigo)
                 guardarPedido['tipo'].push(tipo)
                 guardarPedido['sabor'].push(sabor)
                 guardarPedido['tamanho'].push(tamanho)
                 guardarPedido['qtd'].push(qtd)
                 guardarPedido['precoTot'].push(precoTot)
-               
-            
+                
+                console.log(guardarPedido['id'])
+                
         }
         
         function mostrarResultado(){
@@ -370,44 +371,50 @@ function adicionarCarrinho(){
                 
                 adicionarArray()
                 //A PROPRIEDADE INSERTROW ELA SERVE PARA CRIAR UMA LINHA
-                // A PROPRIEDADE INSERTCELL ELA SERVE PARA CRIAR UMA COLUNA
-                let tr = document.querySelector("tbody#tbody").insertRow()
-                let td_id = tr.insertCell()
-                let td_tipo = tr.insertCell()
-                let td_sabor = tr.insertCell()
-                let td_tamanho = tr.insertCell()
-                let td_qtd = tr.insertCell()
-                let td_precoTot = tr.insertCell()
-                let td_img = tr.insertCell()
-               
-                td_img.classList.add('lixo')
-                
-                td_id.innerText = guardarPedido['id'][codigo]
-                td_tipo.innerText = guardarPedido['tipo'][codigo]
-                td_sabor.innerText = guardarPedido['sabor'][codigo]
-                td_tamanho.innerText = guardarPedido['tamanho'][codigo]
-                td_qtd.innerText = guardarPedido['qtd'][codigo]
-                td_precoTot.innerText = guardarPedido['precoTot'][codigo]
 
-                let lixeiro = document.createElement("img")
-                lixeiro.src = "img/lixo.png"
+                // A PROPRIEDADE INSERTCELL ELA SERVE PARA CRIAR UMA COLUNA
+
+               
+                    let tr = document.querySelector("tbody#tbody").insertRow()
+                    let td_id = tr.insertCell()
+                    let td_tipo = tr.insertCell()
+                    let td_sabor = tr.insertCell()
+                    let td_tamanho = tr.insertCell()
+                    let td_qtd = tr.insertCell()
+                    let td_precoTot = tr.insertCell()
+                    let td_img = tr.insertCell()
+                    
+                    
+                    
+                    td_id.innerText = guardarPedido['id'][codigo]
+                    td_tipo.innerText = guardarPedido['tipo'][codigo]
+                    td_sabor.innerText = guardarPedido['sabor'][codigo]
+                    td_tamanho.innerText = guardarPedido['tamanho'][codigo]
+                    td_qtd.innerText = guardarPedido['qtd'][codigo]
+                    td_precoTot.innerText = guardarPedido['precoTot'][codigo]
+
+                    let lixeiro = document.createElement("img")
+                    lixeiro.src = "img/lixo.png"
+                    console.log(guardarPedido)    
                 
               
 
 
-                //AQUI EU DEI UM ID PARA A VARIAVEL QUE VAI SER UTIL NA HORA DA REMOÇÃO DA LINHA DO ARRAY
-                lixeiro.setAttribute("id", `${codigo}`)
-                //AQUI EU CRIEI UMA FUNÇAÕ PARA CADA CLICK NO BOTÃO
-                lixeiro.setAttribute("onclick", "deletar(" + codigo + ")")
-               
-               
+                    //AQUI EU DEI UM ID PARA A VARIAVEL QUE VAI SER UTIL NA HORA DA REMOÇÃO DA LINHA DO ARRAY
+                    lixeiro.setAttribute("id", `${codigo}`)
+                    //tr.setAttribute('id', `${codigo}`)
+                    //AQUI EU CRIEI UMA FUNÇAÕ PARA CADA CLICK NA ' TD ' QUE SE ENCONTRA  O BOTÃO
+                    td_img.classList.add('lixo')
+                    td_img.setAttribute("onclick", "deletar(" + codigo + ")")
+                
 
-                td_img.appendChild(lixeiro)
-               
-
-                codigo++
-                resultado.style.display = "block"
-
+                    td_img.appendChild(lixeiro)
+                
+                    //console.log(guardarPedido['id'].length)
+                    codigo++
+                    resultado.style.display = "block"
+                    
+                
             
             }
            
@@ -424,27 +431,57 @@ function adicionarCarrinho(){
     }
     zeraOpcao()
 }
-function deletar(codigo){
+function deletar(id){
     let tbody = document.getElementById("tbody")
-    for(i= 0; i <= guardarPedido['id'].length; i++){
-        i != codigo? codigo: i
-        
-        if(guardarPedido['id'][i] == codigo){
-            alert("parece que deu certo" + i)
+    
+    for(i= 0; i < guardarPedido['id'].length; i++){
+
+        if(guardarPedido['id'][i] == id){
+            
+            
+            console.log(guardarPedido['sabor'][i])
+            //NESSE METODO DE REMOÇÃO EU DIRIJO O INDECE QUE SERA REMOVIDO E EM SEGUIDA A QTD QUE SERA REMOVIDA NESSE METODO É POSSIVEL REMOVER INTENS DE QUALQUER POSIÇÃO DIFERENTESDOS OUTROS
+            guardarPedido["id"].splice(i, 1)
+            guardarPedido["tipo"].splice(i, 1)
+            guardarPedido["sabor"].splice(i, 1)
+            guardarPedido["tamanho"].splice(i, 1)
+            guardarPedido["qtd"].splice(i, 1)
+            guardarPedido["precoTot"].splice(i, 1)
+
+            
+            tbody.deleteRow(id)
+            
+            codigo = id++
+            return codigo
+            
         }
-        
     }
     /*
-    console.log(` Esse é o codigo do id ${codigo}`)
-    guardarPedido["id"].shift(codigo)
+
+    
+    for(i= id; i < guardarPedido['id'].length; i++){
+           
+        if(guardarPedido['id'][id] == id){
+            guardarPedido["id"].shift(id)
+            //alert("parece que deu certo" + i)
+            guardarPedido["tipo"].shift(id)
+            guardarPedido["sabor"].splice(id, 1)
+            guardarPedido["qtd"].shift(id)
+            guardarPedido["precoTot"].shift(id)
+            //quando voltar vou tentar colocar o lenght daquele id na variavel do id
+        }
+       // guardarPedido["id"].shift(id)
+    }
+
     guardarPedido["tipo"].shift(codigo)
-    guardarPedido["sabor"].shift(codigo)
+    guardarPedido["sabor"].splice(codigo, 1)
     guardarPedido["qtd"].shift(codigo)
     guardarPedido["precoTot"].shift(codigo)
-
-    tbody.deleteRow(codigo)
     */
-    console.log(guardarPedido)
+
+
+   
+    
 }
      
 
