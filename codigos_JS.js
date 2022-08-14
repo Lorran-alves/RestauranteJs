@@ -20,7 +20,6 @@
     guardarPedido['qtd'] = []
     guardarPedido['precoTot'] = []
 
-    console.log(guardarPedido)
    /* AQUI É A PIZZA */
     function mostrarOpcao(){
         opcao_qtd_de_recheios.style.display = "block"
@@ -82,8 +81,10 @@ function adicionarCarrinho(){
     if (nome === "" || qtd <= 0 || qtd === "" || tipo == '') {
       
         alert("Preencha os dados corretamente para prosseguir")
+       
 
     }
+    
     else{//DEPOIS DE SEREM FEITOS OS TESTES BASICOS ENTRA NESSE ELSE 
         //CASO O TIPO SEJA FALSE ENTÃO ENTRA NO LAÇO DO PASTEL E SE DER TRUE O LAÇO DA PIZZA
        
@@ -343,38 +344,35 @@ function adicionarCarrinho(){
       
         
        
-        function adicionarArray(){
-               
-                guardarPedido["id"].push(codigo)
-                guardarPedido['tipo'].push(tipo)
-                guardarPedido['sabor'].push(sabor)
-                guardarPedido['tamanho'].push(tamanho)
-                guardarPedido['qtd'].push(qtd)
-                guardarPedido['precoTot'].push(precoTot)
-                
-                console.log(guardarPedido['id'])
-                
-        }
         
-        function mostrarResultado(){
-            
+        function validaCampos () {
             precoTot = preco * qtd
-            
             if(preco1 != "" && preco2 != ""){
                 precoTot = (preco1 + preco2) * qtd
                 sabor = metade1.value + ' / ' + metade2.value                
             }
-            //SO IRÁ APARECER OS RESULTADOS CASO O VALOR SEJA DIFERENTE DE VAZIO
             if(precoTot != ''){
-                //aqui é onde estou realizando a entrada nos dados da tabela
-                
-                
-                adicionarArray()
+                return true
+            }
+            return false
+        } 
+        function mostrarResultado(){
+            
+            //SO IRÁ APARECER OS RESULTADOS CASO O VALOR SEJA DIFERENTE DE VAZIO
+           
+            if(validaCampos()){
+
+                adicionarArray()   
+                document.getElementById('pedidoFinalizado').style.display = "none"//SEÇÃO DO RESULTADO FINAL DO PEDIDO
+                document.querySelector("tbody#tbody").innerText = '' 
+
+                //NÃO SEI AO CERTO AINDA POREM EU ACREDITO QUE NO FOR AQUI ELE VAI PERCORRER O ID DO PRODUTO SEMPRE INICIANDO DO 0 , ASSIM EVITA OS BUGS
+                for(let i = 0; i < guardarPedido['id'].length; i ++ ){
+
+                    //aqui é onde estou realizando a entrada nos dados da tabela
                 //A PROPRIEDADE INSERTROW ELA SERVE PARA CRIAR UMA LINHA
 
                 // A PROPRIEDADE INSERTCELL ELA SERVE PARA CRIAR UMA COLUNA
-
-               
                     let tr = document.querySelector("tbody#tbody").insertRow()
                     let td_id = tr.insertCell()
                     let td_tipo = tr.insertCell()
@@ -386,41 +384,43 @@ function adicionarCarrinho(){
                     
                     
                     
-                    td_id.innerText = guardarPedido['id'][codigo]
-                    td_tipo.innerText = guardarPedido['tipo'][codigo]
-                    td_sabor.innerText = guardarPedido['sabor'][codigo]
-                    td_tamanho.innerText = guardarPedido['tamanho'][codigo]
-                    td_qtd.innerText = guardarPedido['qtd'][codigo]
-                    td_precoTot.innerText = guardarPedido['precoTot'][codigo]
+                    td_id.innerText = guardarPedido['id'][i]
+                    td_tipo.innerText = guardarPedido['tipo'][i]
+                    td_sabor.innerText = guardarPedido['sabor'][i]
+                    td_tamanho.innerText = guardarPedido['tamanho'][i]
+                    td_qtd.innerText = guardarPedido['qtd'][i]
+                    td_precoTot.innerText = guardarPedido['precoTot'][i]
 
                     let lixeiro = document.createElement("img")
-                    lixeiro.src = "img/lixo.png"
-                    console.log(guardarPedido)    
-                
-              
-
-
+                    lixeiro.src = "img/lixo.png"   
                     //AQUI EU DEI UM ID PARA A VARIAVEL QUE VAI SER UTIL NA HORA DA REMOÇÃO DA LINHA DO ARRAY
-                    lixeiro.setAttribute("id", `${codigo}`)
+                    tr.setAttribute("id", `${i}`)
                     //tr.setAttribute('id', `${codigo}`)
                     //AQUI EU CRIEI UMA FUNÇAÕ PARA CADA CLICK NA ' TD ' QUE SE ENCONTRA  O BOTÃO
                     td_img.classList.add('lixo')
-                    td_img.setAttribute("onclick", "deletar(" + codigo + ")")
+                    td_img.setAttribute("onclick" ,"deletar(" + i +")")
                 
 
                     td_img.appendChild(lixeiro)
-                
-                    //console.log(guardarPedido['id'].length)
-                    codigo++
-                    resultado.style.display = "block"
+                } 
                     
-                
-            
-            }
-           
-            
+                   
+                   
+                     
+                    resultado.style.display = "block"
+            } 
         }
-        
+        function adicionarArray(){
+               
+            guardarPedido["id"].push(codigo)
+            guardarPedido['tipo'].push(tipo)
+            guardarPedido['sabor'].push(sabor)
+            guardarPedido['tamanho'].push(tamanho)
+            guardarPedido['qtd'].push(qtd)
+            guardarPedido['precoTot'].push(precoTot)
+            codigo++
+            console.log(guardarPedido)
+        }  
         mostrarResultado()
     }
     function zeraOpcao(){
@@ -431,14 +431,11 @@ function adicionarCarrinho(){
     }
     zeraOpcao()
 }
-function deletar(id){
-    let tbody = document.getElementById("tbody")
-    
-    for(i= 0; i < guardarPedido['id'].length; i++){
-
-        if(guardarPedido['id'][i] == id){
-            
-            
+function deletar(indece){
+    for(let i= 0; i < guardarPedido['id'].length; i++){
+        console.log(`posicão ${i}`)
+        if(guardarPedido['id'][i] == indece){
+            alert('chegou aqui')
             console.log(guardarPedido['sabor'][i])
             //NESSE METODO DE REMOÇÃO EU DIRIJO O INDECE QUE SERA REMOVIDO E EM SEGUIDA A QTD QUE SERA REMOVIDA NESSE METODO É POSSIVEL REMOVER INTENS DE QUALQUER POSIÇÃO DIFERENTESDOS OUTROS
             guardarPedido["id"].splice(i, 1)
@@ -446,43 +443,37 @@ function deletar(id){
             guardarPedido["sabor"].splice(i, 1)
             guardarPedido["tamanho"].splice(i, 1)
             guardarPedido["qtd"].splice(i, 1)
-            guardarPedido["precoTot"].splice(i, 1)
-
-            
-            tbody.deleteRow(id)
-            
-            codigo = id++
-            return codigo
-            
-        }
+            guardarPedido["precoTot"].splice(i, 1)       
+            document.getElementById("tbody").deleteRow(indece)      
+        }  
     }
-    /*
-
-    
-    for(i= id; i < guardarPedido['id'].length; i++){
-           
-        if(guardarPedido['id'][id] == id){
-            guardarPedido["id"].shift(id)
-            //alert("parece que deu certo" + i)
-            guardarPedido["tipo"].shift(id)
-            guardarPedido["sabor"].splice(id, 1)
-            guardarPedido["qtd"].shift(id)
-            guardarPedido["precoTot"].shift(id)
-            //quando voltar vou tentar colocar o lenght daquele id na variavel do id
-        }
-       // guardarPedido["id"].shift(id)
-    }
-
-    guardarPedido["tipo"].shift(codigo)
-    guardarPedido["sabor"].splice(codigo, 1)
-    guardarPedido["qtd"].shift(codigo)
-    guardarPedido["precoTot"].shift(codigo)
-    */
-
-
+}
+function finalizarPedido(){
    
+    document.getElementById('pedidoFinalizado').style.display = "block"//SEÇÃO DO RESULTADO FINAL DO PEDIDO
+    
+        let tr_finalizar = document.getElementById("tbody_resultado").insertRow()
+        td_pasteis = tr_finalizar.insertCell()
+        td_pizzas = tr_finalizar.insertCell()
+        td_valorTot = tr_finalizar.insertCell()
+
+        td_pasteis.innerText = 2
+        td_pizzas.innerText = 5
+        td_valorTot.innerText = 250.00
+        
+
     
 }
+
+ // IREI CRIAR AQUI UM BOTÃO PARA FINALIZAR O PEDIDO 
+let Finalizar = document.createElement('button')
+
+    Finalizar.innerText = "Finalizar Pedido"
+    Finalizar.classList.add('button_finalizar')
+    Finalizar.setAttribute("onclick", "finalizarPedido()")
+    resultado.appendChild(Finalizar)
+   
+
      
 
 

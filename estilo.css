@@ -173,7 +173,7 @@ form input#total{
     font-size: 1em;
 }
 
-form input.button{
+form input.button, .button_finalizar{
     width: 95%;
     padding: 10px;
     margin: 2.5%;
@@ -181,11 +181,22 @@ form input.button{
     background-color:orange;
     color: black;
     font-weight: bold;
-
-}
-input.button:hover{
+    border-radius: 10px;
     cursor: pointer;
+}
+
+input.button:hover{
     background-color:rgb(168, 111, 5);
+}
+
+/* BOTAO DE FINALIZAR O  */
+.button_finalizar{
+    width: 50%;
+    background-color: rgb(57, 253, 57);
+    
+}
+.button_finalizar:hover{
+    background-color: rgb(31, 250, 31);
 }
 /* CONFIGURANDO O TAMANHO DAS PIZZAS */
 
@@ -282,4 +293,8 @@ fieldset.qtd-container input{
    color:white;
     cursor: pointer;
     transition: 1s;
+}
+#resultado{
+    border: 3px solid black;
+    box-shadow: 1px 3px;
 }

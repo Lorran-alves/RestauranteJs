@@ -4,9 +4,12 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       
+       
         <link rel="stylesheet" href="estilo.css">
         
-        <title>Proctics - Restaurante popular</title>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <title>Proctics - Restaurante popular</title>   
     </head>
     <body > 
         <main id="main">
@@ -323,7 +326,7 @@
 
                 </form>
                 <section id="resultado" style="display:none; margin-top: 5%;">
-                <h3 style="margin-bottom:2%;">Aqui está o resultado do seu pedido!!</h3>
+                <h3 style="margin-bottom:3px; color: rgb(248, 68, 68); font-size: 1.5em">Carrinho</h3>
                     <table class="tabela_resultado" style="font-size:1em ;">
                         <thead>
                             <tr>
@@ -337,14 +340,24 @@
                                 
                             </tr>
                         </thead>
-                        <tbody id="tbody">
-    
-                        </tbody>
+                        <tbody id="tbody"></tbody>
+                    </table>
+               
+                </section>
+                <section id="pedidoFinalizado" style="display:none; margin-top: 2%;">
+                    <table class="tabela_resultado" style="font-size:1em ;">
+                        <thead>
+                            <tr>
+                                <th>Pasteis</th>
+                                <th>Pizzas</th>
+                                <th>Valor Total</th>
+                            </tr>
+                        </thead>
+                            <tbody id="tbody_resultado"></tbody>
                     </table>
                 </section>
             </section>
-            
-            <script src="codigos_JS.js"></script>
-        </main>
+        </main> 
+        <script src="codigos_JS.js"></script>
     </body>
 </html>
