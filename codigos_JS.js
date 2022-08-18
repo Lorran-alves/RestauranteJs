@@ -9,9 +9,13 @@
   let unicoSabor_pizza = document.getElementById("sabor") // UNICO SABOR PIZZA
   let precoTot = 0
   let codigo = 0
+  let tr_finalizar = document.getElementById("tbody_resultado").insertRow()
+  let td_pasteis = tr_finalizar.insertCell()
+  let td_pizzas = tr_finalizar.insertCell()
+  let td_valorTot = tr_finalizar.insertCell()
   
-   
-
+  tr_finalizar.classList.add("tr")
+  //CRIAÇÃO DO ARRAY
   let guardarPedido = Array()
     guardarPedido['id'] = []
     guardarPedido['tipo'] = []
@@ -53,6 +57,17 @@
        }
 
         dois_Sabores()
+       
+function mostraMenu(){
+   
+    if(menu.style.display == 'none'){
+        menu.style.display = "flex"
+    }else{
+        menu.style.display = "none"
+    }
+}
+
+
            
 function adicionarCarrinho(){
 
@@ -63,7 +78,7 @@ function adicionarCarrinho(){
     let preco = ''
     let preco1 = 0 
     let preco2 = 0
-    let resultado = document.getElementById("resultado")
+    let carrinho = document.getElementById("carrinho")
     var qtd = document.getElementById("qtd").value //QUANTIDADE DE PASTEL OU PIZZA
     
     if(tipo == false){
@@ -79,12 +94,8 @@ function adicionarCarrinho(){
         tamanho = "Media"
     }
     if (nome === "" || qtd <= 0 || qtd === "" || tipo == '') {
-      
-        alert("Preencha os dados corretamente para prosseguir")
-       
-
+        alert("Preencha os dados corretamente para prosseguir")  
     }
-    
     else{//DEPOIS DE SEREM FEITOS OS TESTES BASICOS ENTRA NESSE ELSE 
         //CASO O TIPO SEJA FALSE ENTÃO ENTRA NO LAÇO DO PASTEL E SE DER TRUE O LAÇO DA PIZZA
        
@@ -123,7 +134,6 @@ function adicionarCarrinho(){
                 switch(sabor_Pastel.value){
                     case "mussarela" :
                         preco = 8
-                        console.log(`preço do ${tipo} é igual a : ${preco}`)
                         break
                     case "presunto" :         
                         preco = 17
@@ -193,7 +203,6 @@ function adicionarCarrinho(){
                 else if ( tamanho === "Grande"){
                     
                     switch(unicoSabor_pizza.value){
-
                         case "mussarela" :                       
                             preco = 30
                             break
@@ -341,10 +350,6 @@ function adicionarCarrinho(){
                 }
             } 
         }
-      
-        
-       
-        
         function validaCampos () {
             precoTot = preco * qtd
             if(preco1 != "" && preco2 != ""){
@@ -356,16 +361,24 @@ function adicionarCarrinho(){
             }
             return false
         } 
-        function mostrarResultado(){
-            
+        function mostrarCarrinho(){
             //SO IRÁ APARECER OS RESULTADOS CASO O VALOR SEJA DIFERENTE DE VAZIO
-           
             if(validaCampos()){
-
+                function adicionarArray(){
+               
+                    guardarPedido["id"].push(codigo)
+                    guardarPedido['tipo'].push(tipo)
+                    guardarPedido['sabor'].push(sabor)
+                    guardarPedido['tamanho'].push(tamanho)
+                    guardarPedido['qtd'].push(qtd)
+                    guardarPedido['precoTot'].push(precoTot)
+                    codigo++
+                }  
                 adicionarArray()   
                 document.getElementById('pedidoFinalizado').style.display = "none"//SEÇÃO DO RESULTADO FINAL DO PEDIDO
+                //AQUI EU ESTOU LIMPANDO O VALOR DA TABELA PARA NÃO FICAR REPETINDO QUANDO ENTRAR NO FOR
                 document.querySelector("tbody#tbody").innerText = '' 
-
+                
                 //NÃO SEI AO CERTO AINDA POREM EU ACREDITO QUE NO FOR AQUI ELE VAI PERCORRER O ID DO PRODUTO SEMPRE INICIANDO DO 0 , ASSIM EVITA OS BUGS
                 for(let i = 0; i < guardarPedido['id'].length; i ++ ){
 
@@ -381,9 +394,8 @@ function adicionarCarrinho(){
                     let td_qtd = tr.insertCell()
                     let td_precoTot = tr.insertCell()
                     let td_img = tr.insertCell()
-                    
-                    
-                    
+                        tr.classList.add('tr')
+                        //  ADICIONANDO A CLASS PARA DEIXAR A LINHA DE OUTRA COR
                     td_id.innerText = guardarPedido['id'][i]
                     td_tipo.innerText = guardarPedido['tipo'][i]
                     td_sabor.innerText = guardarPedido['sabor'][i]
@@ -399,29 +411,12 @@ function adicionarCarrinho(){
                     //AQUI EU CRIEI UMA FUNÇAÕ PARA CADA CLICK NA ' TD ' QUE SE ENCONTRA  O BOTÃO
                     td_img.classList.add('lixo')
                     td_img.setAttribute("onclick" ,"deletar(" + i +")")
-                
-
                     td_img.appendChild(lixeiro)
-                } 
-                    
-                   
-                   
-                     
-                    resultado.style.display = "block"
+                }   
+                carrinho.style.display = "block"
             } 
         }
-        function adicionarArray(){
-               
-            guardarPedido["id"].push(codigo)
-            guardarPedido['tipo'].push(tipo)
-            guardarPedido['sabor'].push(sabor)
-            guardarPedido['tamanho'].push(tamanho)
-            guardarPedido['qtd'].push(qtd)
-            guardarPedido['precoTot'].push(precoTot)
-            codigo++
-            console.log(guardarPedido)
-        }  
-        mostrarResultado()
+        mostrarCarrinho()
     }
     function zeraOpcao(){
         sabor_Pastel.value =""
@@ -433,9 +428,7 @@ function adicionarCarrinho(){
 }
 function deletar(indece){
     for(let i= 0; i < guardarPedido['id'].length; i++){
-        console.log(`posicão ${i}`)
         if(guardarPedido['id'][i] == indece){
-            alert('chegou aqui')
             console.log(guardarPedido['sabor'][i])
             //NESSE METODO DE REMOÇÃO EU DIRIJO O INDECE QUE SERA REMOVIDO E EM SEGUIDA A QTD QUE SERA REMOVIDA NESSE METODO É POSSIVEL REMOVER INTENS DE QUALQUER POSIÇÃO DIFERENTESDOS OUTROS
             guardarPedido["id"].splice(i, 1)
@@ -449,30 +442,60 @@ function deletar(indece){
     }
 }
 function finalizarPedido(){
-   
-    document.getElementById('pedidoFinalizado').style.display = "block"//SEÇÃO DO RESULTADO FINAL DO PEDIDO
-    
-        let tr_finalizar = document.getElementById("tbody_resultado").insertRow()
-        td_pasteis = tr_finalizar.insertCell()
-        td_pizzas = tr_finalizar.insertCell()
-        td_valorTot = tr_finalizar.insertCell()
 
-        td_pasteis.innerText = 2
-        td_pizzas.innerText = 5
-        td_valorTot.innerText = 250.00
-        
+    let qtdPastel = 0
+    let qtdPizza = 0
+    let precoFull = 0
+    function calcularQtd (){
 
-    
+        for (let i = 0 ; i < guardarPedido['id'].length; i ++){
+            if(guardarPedido['tipo'][i] === 'Pastel'){
+                qtdPastel += Number(guardarPedido['qtd'][i])
+            }
+            else  if (guardarPedido['tipo'][i] === "Pizza"){
+                qtdPizza += Number(guardarPedido['qtd'][i])
+            }
+            precoFull += guardarPedido['precoTot'][i]
+        }
+        //FIZ A CRIAÇÃO DA LINHA LA EM CIMA PARA ELA SO SER CRIADA  APENAS UMA VEZ E SO O SEU VALOR SER ALTERADO
+        document.getElementById('pedidoFinalizado').style.display = "block"//SEÇÃO DO RESULTADO FINAL DO PEDIDO
+        td_pasteis.innerText = qtdPastel
+        td_pizzas.innerText = qtdPizza
+        td_valorTot.innerText = precoFull + ".00"
+    }
+    carrinho.style.display ="none"
+    calcularQtd()
+    cancelarPedido()
+}
+function cancelarPedido(){
+     let total = guardarPedido["id"].length
+    for(let i = 0; i < guardarPedido['id'].length;i++){
+        document.getElementById("tbody").innerText = ""
+        if(total > i ){
+            guardarPedido["id"].splice(i, total)
+            guardarPedido["tipo"].splice(i, total)
+            guardarPedido["sabor"].splice(i, total)
+            guardarPedido["tamanho"].splice(i,total)
+            guardarPedido["qtd"].splice(i,total)
+            guardarPedido["precoTot"].splice(i, total)
+        }
+    }  
+    carrinho.style.display ="none"
 }
 
- // IREI CRIAR AQUI UM BOTÃO PARA FINALIZAR O PEDIDO 
+ // IREI CRIAR AQUI UM BOTÃO PARA FINALIZAR O PEDIDO , IRÁ FICAR LOGO ABAIXO DO CARRINHO
 let Finalizar = document.createElement('button')
 
     Finalizar.innerText = "Finalizar Pedido"
     Finalizar.classList.add('button_finalizar')
     Finalizar.setAttribute("onclick", "finalizarPedido()")
-    resultado.appendChild(Finalizar)
+    carrinho.appendChild(Finalizar)
+let Cancelar = document.createElement('button')
+   Cancelar.innerText = 'Cancelar Pedido'
    
+   Cancelar.classList.add('button_cancelar')
+    Cancelar.setAttribute("onclick", "cancelarPedido()")
+    carrinho.appendChild(Cancelar)
 
      
 

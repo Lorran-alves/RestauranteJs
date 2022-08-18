@@ -7,28 +7,30 @@
        
        
         <link rel="stylesheet" href="estilo.css">
-        
+        <link rel="icon" href="img/logo.svg">
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <title>Proctics - Restaurante popular</title>   
+        <title>Serve Bem - Restaurante popular</title>   
     </head>
     <body > 
         <main id="main">
             <header>
-                <hgroup>
-                    <a href=""><h1>Proctycs</h1></a>
+                <hgroup class="titulos">
+                    <a href=""><h1>Serve Bem</h1></a>
                     <h4 class="subtitulo">Sua comida em boas mãos</h4>
                 </hgroup>  
                 
+                    <img src="img/menu.svg" alt="" id="img-menu" onclick="mostraMenu()">
+                
                 <nav id="nav_header">
-                    <ul id="">
+                    <ul>
                         <li>
-                            <a href="">Internacional</a>
+                            <a href="">Funcionarios</a>
                         </li>
                         <li>
                             <a href="">Promoções</a>
                         </li>
                         <li>
-                            <a href="">simular</a>
+                            <a href="">Encomenda</a>
                         </li>
                         <li>
                             <a href="">Contato</a>
@@ -37,13 +39,33 @@
                 </nav> 
             </header>
             <section class="conteudo">
-                <h2>Desde 1998 trazendo alegria ao seu paladar</h2>  
+                <h2>Espaço climatizado</h2>  
                 <hgroup class="grupo-img">
                     <figcaption class="legenda-imagem">
                         <h2>Seja bem vindo ao nosso site</h2>
                     </figcaption>
                     <img class="img" src="img/restaurante.jpg"alt="">
+                    <p>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                    </p>
                 </hgroup>
+            </section>
+            <section style="width: 100%; text-align: center;">
+                <h2 style="color: orange;">Novidades</h2>
+                <section class="secoes_Duo1" style= "float: left;">
+                    <h3>Cardapio balanceado</h3>
+                    <img class="img_duo" src="img/alimentacao.jpg" alt="">
+                    <p>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. 
+                    </p>
+                </section>
+                <section class="secoes_Duo2">
+                    <h3>Promoções</h3>
+                    <img class="img_duo" src="img/promocao.jpg" alt="">
+                    <p>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. 
+                    </p>
+                </section>
             </section>
 
             <section id="tabela">
@@ -51,7 +73,7 @@
                 <table>
                     <thead>
                         <tr >
-                            <th>Codigo</th>
+                            <th>Cdg</th>
                             <th>Sabor</th>
                             <th>Tamanho M</th>
                             <th>Tamanho G</th>
@@ -142,74 +164,34 @@
                             <td >15,00 R$</td>
                             <td>Pastel / Pizza</td>
                         </tr>
-
                     </tbody>
                 </table>
             </section>
             <section id="formulario">
-
                 <h2>Faça seu pedido</h2>
                 <form action="">
-
-
                     <label for="nome">Nome:</label>
-                    <input type="text" 
-                    class="nome"
-                    id="nome" 
-                    placeholder="Digite o seu nome">
-                    
-                    
+                    <input type="text" class="nome" id="nome"placeholder="Digite o seu nome">
                     <section >
                         <fieldset class="tipo">
                             <legend>Tipo</legend>
-
-                         
-                            
-                            <input type="radio"
-                            id="tipoPizza"
-                            class="radio"
-                            name="tipo"
-                            value="1" 
-                            onclick="mostrarOpcao()" ><label onclick="mostrarOpcao()"  for="tipoPizza" >Pizza</label>
-
-                            <input type="radio"
-                            class="radio"
-                            id="pastel"
-                            name="tipo"
-                            value="1" 
-                             onclick="unicaOpcaoPastel()" checked><label for="pastel" >Pastel</label>
-
+                            <input type="radio"id="tipoPizza" class="radio"name="tipo"value="1" onclick="mostrarOpcao()" ><label onclick="mostrarOpcao()"  for="tipoPizza" >Pizza</label>
+                            <input type="radio"class="radio"id="pastel"name="tipo" value="1" onclick="unicaOpcaoPastel()" checked><label for="pastel" >Pastel</label>
                         </fieldset>
                     </section>
                     <!--  AQUI SE INICIA A SEÇÃO DOS SABORES-->
                     <section class="sabores" id="secaoSabores">
                         <fieldset>
                             <legend class="subtitulo">Sabores</legend>
-
                             <section class="saborEscolha">
-                               
-                                    <label for="umSabor" onclick="umSaborPizza()"><input type="radio"
-                                    id="umSabor" 
-                                    class="radio"
-                                    name="sabor"
-                                    value="grande"
-                                    >Um sabor</label>
-        
-                                   <label for="doisSabor" onclick="dois_Sabores()" ><input type="radio"
-                                    id="doisSabor"
-                                    class="radio"
-                                    name="sabor"
-                                    value="medio" 
-                                    >Dois sabor</label>
-                                
+                                    <label for="umSabor" onclick="umSaborPizza()"><input type="radio"id="umSabor" class="radio" name="sabor"value="grande">Um sabor</label>
+                                   <label for="doisSabor" onclick="dois_Sabores()" ><input type="radio"id="doisSabor" class="radio"name="sabor"value="medio"  >Dois sabor</label>
                             </section>
                             <!--  AQUI SE INICIA A SEÇÃO DE DOIS SABORES-->
                             <section  id="duoSabor" > 
                                 <section class="doisSabores"> 
-                                    <h4>Primeria metade</h4>     
-
+                                    <h4 class="metades">Primeria metade</h4>     
                                     <select name="" id="metade1" class="select">
-                                        
                                         <optgroup >
                                             <option value="" selected disabled>Selecionar Sabor</option>
                                             <option value="mussarela">Mussarela</option>
@@ -223,10 +205,8 @@
                                         </optgroup>
                                     </select>
                                 </section>
-
                                 <section class="doisSabores">
-
-                                    <h4>Segunda metade</h4>
+                                    <h4 class="metades">Segunda metade</h4>
                                     <select name="" id="metade2"  class="select">
                                         <optgroup >
                                             <option value="" selected disabled>Selecionar Sabor</option>
@@ -255,7 +235,6 @@
                                             <option value="frango">Frango</option>
                                             <option value="carne">Carne</option>
                                             <option value="frango-catupiry">Frango-Catupiry</option>
-                                            
                                             <option value="portuguesa">Portuguesa</option>
                                         </optgroup>
                                      </select>
@@ -325,9 +304,9 @@
                      class="button">
 
                 </form>
-                <section id="resultado" style="display:none; margin-top: 5%;">
-                <h3 style="margin-bottom:3px; color: rgb(248, 68, 68); font-size: 1.5em">Carrinho</h3>
-                    <table class="tabela_resultado" style="font-size:1em ;">
+                <section id="carrinho">
+                <h3 >Carrinho</h3>
+                    <table class="tabela_carrinho" style="font-size:1em ;">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -344,8 +323,10 @@
                     </table>
                
                 </section>
-                <section id="pedidoFinalizado" style="display:none; margin-top: 2%;">
-                    <table class="tabela_resultado" style="font-size:1em ;">
+                <section id="pedidoFinalizado" style="text-align: center;">
+                    <h3>Obrigado pela preferencia e volte sempre</h4>
+                    <h4 style="color: orange; margin: 5px;">Resumo do pedido</h4>
+                    <table class="tabela_resultado" style="font-size:1em;">
                         <thead>
                             <tr>
                                 <th>Pasteis</th>

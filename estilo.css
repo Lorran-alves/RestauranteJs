@@ -1,3 +1,11 @@
+@font-face {
+    font-family: titulos;
+    src: url(_fonts/bubblegum-sans-regular.otf);
+}
+@font-face {
+    font-family: subtitulos;
+    src: url(_fonts/computer-font.ttf);
+}
 *{
     margin: 0;
 }
@@ -13,64 +21,62 @@ body{
     flex-direction: column;
     width: 80%;
     margin: auto;   
-
 }
-header{
-   
-    margin-bottom: 3% ;
+header{  
     width: 100%;
-    height: 30vh;
- 
 }
+/*area da img do menu*/
 
-
+#img-menu{
+ width: 35px;
+ float: right;
+ cursor: pointer;
+ display: none;
+}
 h1, h4{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-   
+    font-family: titulos; 
 }
 h1{
-    color: rgb(90, 75, 48);
+    color: white;
     font-size: 4em;
-
-   
 }
 h2{
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 2em;
     color: rgb(90, 75, 48);
 }
 h4{
-    color: rgb(90, 75, 48);
-    margin-left: 7%;
-
+    color: rgb(206, 186, 150);
+    margin-left: 5%;
+    display: inline;
 }
 #nav_header{
     float: right;
-    margin-top: 1.6%;
     border-radius: 10px;
-    background-color: rgb(80, 71, 56);
-   
+    background-color: purple;
 }
 ul{
     list-style: none;
+    padding: 0;
 }
 li{
     float: left;
-    padding: 10px;
+    padding: 10px; 
     
 }
 a{
     text-decoration: none;
+   
 }
 li a{
     text-decoration: none;
     color: white;
     padding: 10px;
-   
-   
 }
 li:hover{
-    background-color: rgb(66, 59, 46);
+    background-color:rgb(161, 3, 161);
     border-radius:10px ;
+    color: black;
 }
 .conteudo{
 text-align: center;
@@ -82,11 +88,26 @@ text-align: center;
 }
 hgroup h2{
     color: white;
-    
+}
+h2{
+    color: black;
+    margin: 3px;
 }
 hgroup.grupo-img img{
-    width: 80%; 
-    height: 550px ; 
+    width: 95%; 
+}
+/* imagens duplas*/
+.img_duo{
+    width: 98%;
+    padding: 1%;
+}
+.secoes_Duo1{
+    width: 100%; 
+    float: left; 
+}
+.secoes_Duo2{
+    width: 100%;
+    float: right;
 }
 hgroup.grupo-img{
     position: relative;
@@ -103,11 +124,12 @@ hgroup.grupo-img figcaption{
     background-color: rgba(0, 0, 0, 0.6) ; 
     box-sizing: border-box;
     color: white;
-    width: 80%;
-    height: 550px;
-    left: 10%;
+    width: 95%;
+    
+    left: 2.5%;
     text-align: center;
     transition: opacity 1s;
+    margin: auto;
 }
 
 figcaption.legenda-imagem:hover{  
@@ -115,37 +137,39 @@ figcaption.legenda-imagem:hover{
 }
 
 /* CONFIGURANDO TABELA */
-
 #tabela{
     text-align: center;
-   
+   width: 100%;
+   margin: auto;
+   padding: 1%;
 }
 table{
     border-collapse: collapse;
-    width: 80%;
+    width: 100%;
     margin: auto;
     background-color: rgb(248, 240, 228);
-    
-
+    font-size: 1em
 
 }
-.tabela_resultado{
+.carrinho{
     font-size: 1.5em;
 }
-.tabela_resultado th{
+.tabela_carrinho th{
     background-color: #cecece;
 }
- table th{
+#tabela table th{
     border: 1px solid black;
+   
     border-bottom: 3px solid #606060;
     background-color: rgb(250, 173, 71);
 }
 #tabela table td{
     border: 1px solid black;
-   padding: 5px;
+    padding: 5px;
 }
 #tabela table td.codigo{
     background-color: rgb(250, 173, 71);
+    border-right:3px solid #606060 ;
 }
 #tabela tr:hover{
     background-color: rgb(243, 205, 156);
@@ -156,24 +180,28 @@ table{
     margin: 5%;
 }
 form{
-    width: 80%;
-    border: 1px solid black;
+    width: 95%;
+    border: 4px solid purple;
     margin: auto;
+    font-weight: bold;
+    border-radius: 15px;
 }
 form input.nome{
-    width: 90%;
+    width: 95%;
     padding: 10px;
     margin: 10px;
     font-size: 1em;
 }
-form input#total{
-    width: 90%;
-    padding: 10px;
-    margin: 10px;
-    font-size: 1em;
+input,select{
+    border: 4px solid gray;
+    border-radius:10px ;
+    
+}
+label, legend{
+    font-size: 1.2em;
 }
 
-form input.button, .button_finalizar{
+form input.button, .button_finalizar, .button_cancelar{
     width: 95%;
     padding: 10px;
     margin: 2.5%;
@@ -189,12 +217,23 @@ input.button:hover{
     background-color:rgb(168, 111, 5);
 }
 
-/* BOTAO DE FINALIZAR O  */
-.button_finalizar{
-    width: 50%;
-    background-color: rgb(57, 253, 57);
-    
+
+/* BOTAO DE FINALIZAR E CANCELAR O PEDIDO */
+.button_cancelar{
+    width: 49%;
+    background-color: red;
+    float: right;
+    margin: 0;
+    margin-top: 2%;
 }
+.button_finalizar{
+    width: 49%;
+    background-color: rgb(57, 253, 57);
+    margin: 0;
+    margin-top: 2%;
+    float: left;
+}
+
 .button_finalizar:hover{
     background-color: rgb(31, 250, 31);
 }
@@ -212,11 +251,12 @@ fieldset{
 /* CONFIGURANDO OS SABORES DAS PIZZAS */
 
 
-.sabor{
-    
+.sabor{  
     width: 100%;
-    
-
+}
+fieldset{  
+    border: 3px solid gray;
+    border-radius:10px ;
 }
 section select {
     width: 100%;
@@ -227,9 +267,7 @@ section select {
 /* CONFIGURAÇÕES GERAIS DO FORMULARIO */
 
 
-form{
-    font-weight: bold;
-}
+
 
 /* CONFIGURAÇÕES DO INPUT NUMBER */
 
@@ -253,15 +291,12 @@ fieldset.qtd-container input{
 }
 .sabores{
     display:none ;
-  
-  
 }
 .doisSabores{
     float:right;
     width: 60%; 
     margin: 0;
     display: block;
-    
 }
 .umSabor{
     
@@ -274,7 +309,6 @@ fieldset.qtd-container input{
 .select{
     width: 100%;
 }
-
 #sabores{
     display: none;
 }
@@ -294,7 +328,102 @@ fieldset.qtd-container input{
     cursor: pointer;
     transition: 1s;
 }
-#resultado{
+#carrinho{
     border: 3px solid black;
-    box-shadow: 1px 3px;
+    width:95%;
+    font-size: 1.2;
+    margin: auto;
+    background-color: #cecece;
+    display:none; 
+    margin-top: 5%;
+    border-radius: 10px;
+}
+#carrinho th{
+    background-color: rgb(139, 26, 245);
+    border-bottom: 6px solid rgb(72, 1, 110);
+}
+.tr{
+    background-color:#cecece;
+}
+#pedidoFinalizado{
+    border: 4px solid #ccc;
+    display:none; 
+    margin-top: 2%;
+    border-radius: 15px;
+}
+.tabela_resultado th{
+    background-color: rgb(139, 26, 245);
+    border-bottom: 6px solid rgb(72, 1, 110);
+    
+}
+h3{
+    margin-bottom:3px; 
+    color:#2e2727;
+     font-size: 2em; 
+    font-weight: bold;
+}
+h4{
+    font-size: 1.4em;
+}
+.metades{
+    font-size:1em ;
+    color: black;
+}
+
+/*SEÇÃO DE MEDIAS QUERIES */
+
+@media (min-width:1000px) {
+    .secoes_Duo1, .secoes_Duo2{
+        float: left;
+        width: 49%;
+    } 
+    .secoes_Duo2{
+        float: right;
+        width: 49%;
+    }
+    .img_duo{
+        width: 98%;
+        padding: 1%;
+    }
+   
+
+}
+@media(max-width:900px) {
+    #nav_header{
+        flex-direction: row;
+        font-size: 0.77em;
+       justify-content: center;
+       float: none;
+       margin: 5px;
+       display: none;
+    }
+    #nav_header li{
+        padding:10px 5px;
+        float: left;
+    }
+    #nav_header li a{
+        padding: 5px;
+        padding-left: 0;
+    }
+    .conteudo{
+        margin-top:1%;
+    }
+    .titulos{
+        text-align: center;
+    }
+    #tabela{
+        width: 100%;
+        margin: auto;
+        background: none;
+    }
+    #tabela table{
+        font-size: 0.65em;
+        padding: 0;
+    }
+    header h1{
+        padding: 0px;
+    }
+    #img-menu{
+        display:block;
+    }
 }
