@@ -18,7 +18,7 @@ const cardapio = [
         {sabor:'portuguesa',preco: 15,},
     ],
     cardapioPizzaM = [
-        {sabor:'mussarela',preco: 24,},
+        {sabor:'mussarela',preco: 24,}, 
         {sabor:'milho',preco: 26,},
         {sabor:'presunto',preco: 25,},
         {sabor:'calabresa',preco: 26,},
