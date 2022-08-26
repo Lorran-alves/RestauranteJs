@@ -8,10 +8,9 @@
        
         <link rel="stylesheet" href="estilo.css">
         <link rel="icon" href="img/logo.svg">
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <title>Serve Bem - Restaurante popular</title>   
     </head>
-    <body > 
+     <body ><!--//onresize="verificaTela()"  -->
         <main id="main">
             <header>
                 <hgroup class="titulos">
@@ -175,17 +174,17 @@
                     <section >
                         <fieldset class="tipo">
                             <legend>Tipo</legend>
-                            <input type="radio"id="tipoPizza" class="radio"name="tipo"value="1" onclick="mostrarOpcao()" ><label onclick="mostrarOpcao()"  for="tipoPizza" >Pizza</label>
-                            <input type="radio"class="radio"id="pastel"name="tipo" value="1" onclick="unicaOpcaoPastel()" checked><label for="pastel" >Pastel</label>
+                            <input type="radio"id="tipoPizza" class="radio"name="tipo"value="1" onclick="mostrarOpcaoPizza()" ><label for="tipoPizza" >Pizza</label>
+                            <input type="radio"class="radio"id="pastel"name="tipo" value="1" onclick="mostrarOpcaoPastel()" checked><label for="pastel" >Pastel</label>
                         </fieldset>
                     </section>
                     <!--  AQUI SE INICIA A SEÇÃO DOS SABORES-->
-                    <section class="sabores" id="secaoSabores">
+                    <section class="sabores" id="secaoSaboresPizza">
                         <fieldset>
                             <legend class="subtitulo">Sabores</legend>
                             <section class="saborEscolha">
                                     <label for="umSabor" onclick="umSaborPizza()"><input type="radio"id="umSabor" class="radio" name="sabor"value="grande">Um sabor</label>
-                                   <label for="doisSabor" onclick="dois_Sabores()" ><input type="radio"id="doisSabor" class="radio"name="sabor"value="medio"  >Dois sabor</label>
+                                   <label for="doisSabor" onclick="doisSabores()" ><input type="radio"id="doisSabor" class="radio"name="sabor"value="medio"checked>Dois sabor</label>
                             </section>
                             <!--  AQUI SE INICIA A SEÇÃO DE DOIS SABORES-->
                             <section  id="duoSabor" > 
@@ -205,9 +204,9 @@
                                         </optgroup>
                                     </select>
                                 </section>
-                                <section class="doisSabores">
+                                <section class="doisSabores" >
                                     <h4 class="metades">Segunda metade</h4>
-                                    <select name="" id="metade2"  class="select">
+                                    <select name="" id="metade2"  class="select" >
                                         <optgroup >
                                             <option value="" selected disabled>Selecionar Sabor</option>
                                             <option value="mussarela">Mussarela</option>
@@ -224,8 +223,8 @@
                             </section>
                                   <!--  AQUI SE INICIA A SEÇÃO DE UM SABOR-->
                                 <section class="umSabor" id="unicoSaborPizza" >
-                                    <h4>Escolha o sabor</h4>
-                                    <select name="" id="sabor" class="select" >
+                                    <h4 class="metades">Escolha o sabor</h4>
+                                    <select name="" id="saborPizza" class="select" >
                                         <optgroup >
                                             <option value="" selected disabled>Selecione Sabor</option>
                                             <option value="mussarela">Mussarela</option>
@@ -244,7 +243,7 @@
                     <section class="sabor" id="opcaoPastel">
                         <fieldset>
                             <legend class="subtitulo">Sabor</legend>                        
-                            <select name="" id="saborPastel" >
+                            <select name="" id="saborPastel" class="select">
                                 <optgroup >
                                     <option value="" selected disabled>Selecione Sabor</option>
                                     <option value="mussarela">Mussarela</option>
@@ -267,6 +266,7 @@
                             id="Grande"  
                             class="radio"
                             name="tamanho"
+                            checked
                             value="grande"><label for="Grande">Grande</label>
 
                             <input type="radio"
@@ -298,7 +298,7 @@
    
                 
 
-                    <input type="button"  
+                    <input type="reset"  
                     onclick="adicionarCarrinho()"
                     value="Adicionar Ao Carrinho"
                      class="button">
@@ -339,6 +339,6 @@
                 </section>
             </section>
         </main> 
-        <script src="codigos_JS.js"></script>
+        <script src="script.js"></script>
     </body>
 </html>

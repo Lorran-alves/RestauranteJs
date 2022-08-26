@@ -1,21 +1,45 @@
 
-  let  opcao_do_pastel = document.getElementById("opcaoPastel") // CONTAINER QUE TA A OPCAO DO PASTEL
-  let opcao_qtd_de_recheios = document.getElementById("secaoSabores")   // CONTAINER QUE TA A OPCAO DE QUANTIDADE DE RECHEIOS
-  let opcao_unico_sabor_pizza = document.getElementById("unicoSaborPizza") // CONTAINER QUE TA A OPCAO DO SABOR UNICO PIZZA
-  let opcao_dois_sabores_pizza = document.getElementById("duoSabor")// CONTAINER DOIS SABORES PIZZA
-  let sabor_Pastel = document.getElementById("saborPastel") // SABOR DO PASTEL
-  let metade1 = document.getElementById("metade1") // SABOR DA PRIMEIRA METADE
-  let metade2 = document.getElementById("metade2")// SABOR DA SEGUNDA METADE
-  let unicoSabor_pizza = document.getElementById("sabor") // UNICO SABOR PIZZA
-  let precoTot = 0
-  let codigo = 0
-  let tr_finalizar = document.getElementById("tbody_resultado").insertRow()
-  let td_pasteis = tr_finalizar.insertCell()
-  let td_pizzas = tr_finalizar.insertCell()
-  let td_valorTot = tr_finalizar.insertCell()
-  
-  tr_finalizar.classList.add("tr")
-  //CRIAÇÃO DO ARRAY
+  const cardapio = [
+    cardapioPastelM = [
+        {sabor:'mussarela',preco: 5,},
+        {sabor:'presunto',preco: 9,},
+        {sabor:'frango',preco: 7, },
+        {sabor:'carne',preco: 11,},
+        {sabor:'frango-catupiry',preco: 9,},
+        {sabor:'vegano',preco: 8,},
+        {sabor:'portuguesa',preco: 9,},
+    ],
+    cardapioPastelG = [
+        {sabor:'mussarela',preco: 8,},
+        {sabor:'presunto',preco: 17,},
+        {sabor:'frango', preco: 12,},        
+        {sabor:'carne',preco: 17,},
+        {sabor:'frango-catupiry',preco: 14,},
+        {sabor:'vegano',preco: 12,},
+        {sabor:'portuguesa',preco: 15,},
+    ],
+    cardapioPizzaM = [
+        {sabor:'mussarela',preco: 24,},
+        {sabor:'milho',preco: 26,},
+        {sabor:'presunto',preco: 25,},
+        {sabor:'calabresa',preco: 26,},
+        {sabor:'frango',preco: 27,},        
+        {sabor:'carne',preco: 32,},
+        {sabor:'frango-catupiry',preco: 29,},
+        {sabor:'portuguesa',preco: 34,},
+    ],
+    cardapioPizzaG = [
+        {sabor:'mussarela',preco: 30,},
+        {sabor:'milho',preco: 34,},
+        {sabor:'presunto',preco: 32,},
+        {sabor:'calabresa',preco: 31,  },
+        {sabor:'frango',preco: 34,},        
+        {sabor:'carne',preco: 40,},
+        {sabor:'frango-catupiry',preco: 36,  },
+        {sabor:'portuguesa',preco: 38,},
+    ]
+]
+let preco = 0
   let guardarPedido = Array()
     guardarPedido['id'] = []
     guardarPedido['tipo'] = []
@@ -60,14 +84,20 @@
        
 function mostraMenu(){
    
-    if(menu.style.display == 'none'){
+     if(menu.style.display == 'none'){
         menu.style.display = "flex"
     }else{
         menu.style.display = "none"
     }
 }
-
-
+ function verificaTela(){
+    let largura = window.innerWidth
+    if(largura > 900){
+        menu.style.display = "flex"
+    }else{
+        menu.style.display = "none"
+    }
+ }
            
 function adicionarCarrinho(){
 
@@ -365,55 +395,59 @@ function adicionarCarrinho(){
             //SO IRÁ APARECER OS RESULTADOS CASO O VALOR SEJA DIFERENTE DE VAZIO
             if(validaCampos()){
                 function adicionarArray(){
-               
-                    guardarPedido["id"].push(codigo)
-                    guardarPedido['tipo'].push(tipo)
-                    guardarPedido['sabor'].push(sabor)
-                    guardarPedido['tamanho'].push(tamanho)
-                    guardarPedido['qtd'].push(qtd)
-                    guardarPedido['precoTot'].push(precoTot)
-                    codigo++
+                    // A CADA PEDIDO ADICONADO O CODIGO RECEBE + 1
+                    //E A CADA PEDIDO REMOVIDO O CODIGO RECEBE -1 
+                 
+                        guardarPedido["id"].push(codigo)
+                        guardarPedido['tipo'].push(tipo)
+                        guardarPedido['sabor'].push(sabor)
+                        guardarPedido['tamanho'].push(tamanho)
+                        guardarPedido['qtd'].push(qtd)
+                        guardarPedido['precoTot'].push(precoTot)
+                        codigo++
+                        console.log(codigo)       
+                               
                 }  
                 adicionarArray()   
-                document.getElementById('pedidoFinalizado').style.display = "none"//SEÇÃO DO RESULTADO FINAL DO PEDIDO
-                //AQUI EU ESTOU LIMPANDO O VALOR DA TABELA PARA NÃO FICAR REPETINDO QUANDO ENTRAR NO FOR
-                document.querySelector("tbody#tbody").innerText = '' 
-                
-                //NÃO SEI AO CERTO AINDA POREM EU ACREDITO QUE NO FOR AQUI ELE VAI PERCORRER O ID DO PRODUTO SEMPRE INICIANDO DO 0 , ASSIM EVITA OS BUGS
-                for(let i = 0; i < guardarPedido['id'].length; i ++ ){
+                    document.getElementById('pedidoFinalizado').style.display = "none"//SEÇÃO DO RESULTADO FINAL DO PEDIDO
+                    //AQUI EU ESTOU LIMPANDO O VALOR DA TABELA PARA NÃO FICAR REPETINDO QUANDO ENTRAR NO FOR
+                    document.querySelector("tbody#tbody").innerText = '' 
+                    
+                    //NÃO SEI AO CERTO AINDA POREM EU ACREDITO QUE NO FOR AQUI ELE VAI PERCORRER O ID DO PRODUTO SEMPRE INICIANDO DO 0 , ASSIM EVITA OS BUGS
+                    for(let i = 0; i < codigo; i ++ ){
 
-                    //aqui é onde estou realizando a entrada nos dados da tabela
-                //A PROPRIEDADE INSERTROW ELA SERVE PARA CRIAR UMA LINHA
+                        //aqui é onde estou realizando a entrada nos dados da tabela
+                    //A PROPRIEDADE INSERTROW ELA SERVE PARA CRIAR UMA LINHA
 
-                // A PROPRIEDADE INSERTCELL ELA SERVE PARA CRIAR UMA COLUNA
-                    let tr = document.querySelector("tbody#tbody").insertRow()
-                    let td_id = tr.insertCell()
-                    let td_tipo = tr.insertCell()
-                    let td_sabor = tr.insertCell()
-                    let td_tamanho = tr.insertCell()
-                    let td_qtd = tr.insertCell()
-                    let td_precoTot = tr.insertCell()
-                    let td_img = tr.insertCell()
-                        tr.classList.add('tr')
-                        //  ADICIONANDO A CLASS PARA DEIXAR A LINHA DE OUTRA COR
-                    td_id.innerText = guardarPedido['id'][i]
-                    td_tipo.innerText = guardarPedido['tipo'][i]
-                    td_sabor.innerText = guardarPedido['sabor'][i]
-                    td_tamanho.innerText = guardarPedido['tamanho'][i]
-                    td_qtd.innerText = guardarPedido['qtd'][i]
-                    td_precoTot.innerText = guardarPedido['precoTot'][i]
+                    // A PROPRIEDADE INSERTCELL ELA SERVE PARA CRIAR UMA COLUNA
+                        let tr = document.querySelector("tbody#tbody").insertRow()
+                        let td_id = tr.insertCell()
+                        let td_tipo = tr.insertCell()
+                        let td_sabor = tr.insertCell()
+                        let td_tamanho = tr.insertCell()
+                        let td_qtd = tr.insertCell()
+                        let td_precoTot = tr.insertCell()
+                        let td_img = tr.insertCell()
+                            tr.classList.add('tr')
+                            //  ADICIONANDO A CLASS PARA DEIXAR A LINHA DE OUTRA COR
+                        td_id.innerText = guardarPedido['id'][i]
+                        td_tipo.innerText = guardarPedido['tipo'][i]
+                        td_sabor.innerText = guardarPedido['sabor'][i]
+                        td_tamanho.innerText = guardarPedido['tamanho'][i]
+                        td_qtd.innerText = guardarPedido['qtd'][i]
+                        td_precoTot.innerText = guardarPedido['precoTot'][i]
 
-                    let lixeiro = document.createElement("img")
-                    lixeiro.src = "img/lixo.png"   
-                    //AQUI EU DEI UM ID PARA A VARIAVEL QUE VAI SER UTIL NA HORA DA REMOÇÃO DA LINHA DO ARRAY
-                    tr.setAttribute("id", `${i}`)
-                    //tr.setAttribute('id', `${codigo}`)
-                    //AQUI EU CRIEI UMA FUNÇAÕ PARA CADA CLICK NA ' TD ' QUE SE ENCONTRA  O BOTÃO
-                    td_img.classList.add('lixo')
-                    td_img.setAttribute("onclick" ,"deletar(" + i +")")
-                    td_img.appendChild(lixeiro)
-                }   
-                carrinho.style.display = "block"
+                        let lixeiro = document.createElement("img")
+                        lixeiro.src = "img/lixo.png"   
+                        //AQUI EU DEI UM ID PARA A VARIAVEL QUE VAI SER UTIL NA HORA DA REMOÇÃO DA LINHA DO ARRAY
+                        tr.setAttribute("id", `${i}`)
+                        //tr.setAttribute('id', `${codigo}`)
+                        //AQUI EU CRIEI UMA FUNÇAÕ PARA CADA CLICK NA ' TD ' QUE SE ENCONTRA  O BOTÃO
+                        td_img.classList.add('lixo')
+                        td_img.setAttribute("onclick" ,"deletar(" + i +")")
+                        td_img.appendChild(lixeiro)
+                    }   
+                    carrinho.style.display = "block"
             } 
         }
         mostrarCarrinho()
@@ -427,7 +461,8 @@ function adicionarCarrinho(){
     zeraOpcao()
 }
 function deletar(indece){
-    for(let i= 0; i < guardarPedido['id'].length; i++){
+    
+    for(let i= 0; i < codigo; i++){
         if(guardarPedido['id'][i] == indece){
             console.log(guardarPedido['sabor'][i])
             //NESSE METODO DE REMOÇÃO EU DIRIJO O INDECE QUE SERA REMOVIDO E EM SEGUIDA A QTD QUE SERA REMOVIDA NESSE METODO É POSSIVEL REMOVER INTENS DE QUALQUER POSIÇÃO DIFERENTESDOS OUTROS
@@ -440,6 +475,7 @@ function deletar(indece){
             document.getElementById("tbody").deleteRow(indece)      
         }  
     }
+    codigo--//EU FIZ ESSE DESCREMENTO PARA IGUALAR O PROXIMO ID JA QUE  ESSE FOI
 }
 function finalizarPedido(){
 
@@ -469,7 +505,7 @@ function finalizarPedido(){
 }
 function cancelarPedido(){
      let total = guardarPedido["id"].length
-    for(let i = 0; i < guardarPedido['id'].length;i++){
+    for(let i = 0; i < total;i++){
         document.getElementById("tbody").innerText = ""
         if(total > i ){
             guardarPedido["id"].splice(i, total)
