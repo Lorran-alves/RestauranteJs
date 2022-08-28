@@ -10,7 +10,7 @@
         <link rel="icon" href="img/logo.svg">
         <title>Serve Bem - Restaurante popular</title>   
     </head>
-     <body ><!--//onresize="verificaTela()"  -->
+     <body onresize="verificaTela()">
         <main id="main">
             <header>
                 <hgroup class="titulos">
@@ -257,86 +257,60 @@
                             </select>
                         </fieldset>
                     </section>
-                    
                     <section >
                         <fieldset class="tamanho">
+
                             <legend>Tamanho</legend>
-                            <!-- Id = 'tamanho'-->
-                            <input type="radio"
-                            id="Grande"  
-                            class="radio"
-                            name="tamanho"
-                            checked
-                            value="grande"><label for="Grande">Grande</label>
 
-                            <input type="radio"
-                            id="Media"
-                            class="radio"
-                            name="tamanho"
-                            value="medio" ><label for="Media">Media(o)</label>
+                            <input type="radio" id="Grande" class="radio" name="tamanho" checked value="grande"><label for="Grande">Grande</label>
 
+                            <input type="radio" id="Media" class="radio" name="tamanho" value="medio" ><label for="Media">Media(o)</label>
                         </fieldset>
                     </section>
 
                     <section >
                         <fieldset class="qtd-container">
                             <legend>Quantidade desejada</legend>
-
-                            <input type="number"
-                            id="qtd"
-                            class="qtd"
-                            name="qtd"
-                            placeholder="informe a quantidade desejada"
-                            min="1"
-                            max="99"
-                            >
-
-                        
-
+                            <input type="number" id="qtd" class="qtd" name="qtd" placeholder="informe a quantidade desejada"min="1"max="99">
                         </fieldset>
                     </section>
-   
-                
-
                     <input type="reset"  
                     onclick="adicionarCarrinho()"
                     value="Adicionar Ao Carrinho"
                      class="button">
-
                 </form>
                 <section id="carrinho">
-                <h3 >Carrinho</h3>
-                    <table class="tabela_carrinho" style="font-size:1em ;">
-                        <thead>
-                            <tr>
-                                <th>Tipo</th>
-                                <th>Sabor</th>
-                                <th>Tamanho</th>   
-                                <th>Qtd</th>
-                                <th>Preço</th>
-                                <th>Ação</th>
-
-                            </tr>
-                        </thead>
-                        <tbody id="tbody"></tbody>
-                    </table>
-               
-                </section>
-                <section id="pedidoFinalizado" style="text-align: center;">
-                    <h3>Obrigado pela preferencia e volte sempre</h4>
-                    <h4 style="color: orange; margin: 5px;">Resumo do pedido</h4>
-                    <table class="tabela_resultado" style="font-size:1em;">
-                        <thead>
-                            <tr>
-                                <th>Pasteis</th>
-                                <th>Pizzas</th>
-                                <th>Valor Total</th>
-                            </tr>
-                        </thead>
-                            <tbody id="tbody_resultado"></tbody>
-                    </table>
-                </section>
-            </section>
+                    <h3 >Carrinho</h3>
+                        <table class="tabela_carrinho" style="font-size:1em ;">
+                            <thead>
+                                <tr>
+                                    <th>Tipo</th>
+                                    <th>Sabor</th>
+                                    <th>Tamanho</th>   
+                                    <th>Qtd</th>
+                                    <th>Preço</th>
+                                    <th>Ação</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody"></tbody>
+                        </table>
+                    </section>
+                    <section id="pedidoFinalizado" style="text-align: center;">
+                        <h3>Obrigado pela preferencia e volte sempre</h4>
+                        <h4 >Resumo do pedido</h4>
+                        <table class="tabela_resultado" style="font-size:1em;">
+                            <thead>
+                                <tr>
+                                    <th>Pasteis</th>
+                                    <th>Pizzas</th>
+                                    <th>Valor Total</th>
+                                </tr>
+                            </thead>
+                                <tbody id="tbody_resultado"></tbody>
+                        </table>
+                    </section>
+            </section> 
+           
         </main> 
         <script src="script.js"></script>
     </body>

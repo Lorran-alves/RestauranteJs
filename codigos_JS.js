@@ -531,9 +531,4 @@ let Cancelar = document.createElement('button')
    
    Cancelar.classList.add('button_cancelar')
     Cancelar.setAttribute("onclick", "cancelarPedido()")
-    carrinho.appendChild(Cancelar)
-
-     
-
-
-
+    carrinho.appendChild(document.querySelector("#tbody"))
