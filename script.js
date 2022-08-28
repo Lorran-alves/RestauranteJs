@@ -38,17 +38,16 @@ const cardapio = [
         {sabor:'portuguesa',preco: 38,},
     ]
 ]   
-let resumoPedido = [
-   
-]
+let resumoPedido = []
+let id = 0
 const saboresPizza = document.querySelector('#secaoSaboresPizza')// SEÇÃO DOS SABORES PIZZA
 const saboresPastel = document.querySelector('#opcaoPastel')// SEÇÃO DOS SABORES PASTEL
 const duoSaborPizza = document.querySelector("#duoSabor")
 const umSabor = document.querySelector(".umSabor")
-const select1= document.querySelector(".select1") //PRIMERIA METADE
-const select2 =document.querySelector(".select2") //SEGUNDA METADE
-const select3 =document.querySelector(".select3") // SABOR PIZZA
-const select4 =document.querySelector(".select4") //SABOR PASTEL
+let select1= document.querySelector(".select1") //PRIMERIA METADE
+let select2 =document.querySelector(".select2") //SEGUNDA METADE
+let select3 =document.querySelector(".select3") // SABOR PIZZA
+let select4 =document.querySelector(".select4") //SABOR PASTEL
 
 function mostrarOpcaoPizza(){ 
     saboresPizza.style.display = 'block'
@@ -75,18 +74,23 @@ function doisSabores(){
 }
 
 //ESSA FUNÇÃO IRÁ RETORNAR O PREÇO DO PEDIDO INDEPENTEMENTE DO SABOR E QUANTIDADE
-function verificandoPreco(saborPastel,saborPizza,saborPizza1,saborPizza2,tamanhoIndece,qtd){
+function verificandoPreco(saborPastel,saborPizza,saborPizza1,saborPizza2,tamanhoIndece,qtd,pedido){
     let precoNesseSabor = ''
+    let sabor = ''
     if(saborPastel != ''){precoNesseSabor = cardapio[tamanhoIndece].filter(produto =>  produto.sabor == saborPastel) 
-        return Number(precoNesseSabor[0].preco) * Number(qtd) 
+        // sabor = saborPastel
+        pedido.sabor = saborPastel
+        return Number(precoNesseSabor[0].preco) * Number(qtd)
     }
     if(saborPizza != ''){precoNesseSabor = cardapio[tamanhoIndece].filter(produto =>  produto.sabor == saborPizza)
+        pedido.sabor = saborPizza
         return Number(precoNesseSabor[0].preco) * Number(qtd) 
     }
     if(saborPizza1 != '' && saborPizza2 != ''){//AQUI EU RECUPEREI OS DOIS SABORES ESCOLHIODS 
         precoNesseSabor = cardapio[tamanhoIndece].filter(produto =>  produto.sabor == saborPizza1 ||    produto.sabor == saborPizza2)
        .reduce((acumulador, itemAtual) => acumulador + itemAtual.preco,0)  
-        return Number(precoNesseSabor) /2 * Number(qtd)
+       pedido.sabor = saborPizza1 +','+ saborPizza2 
+       return Number(precoNesseSabor) /2 * Number(qtd)
     } 
 
    
@@ -104,6 +108,40 @@ function validaCampos(nome, tipo,qtd,saborPastel,saborPizza,saborPizza1, saborPi
 function verificaTamanho(tamanho,tipo){//VERIFICANDO O TAMANHO PARA SER USADO PARA RECUPERAR O PRECO
   if(tipo == "Pizza"){  return (tamanho == "Media")?2:3}// ultilizei o if ternario para ter um codigo mais limpo
   else{ return(tamanho == "Media")?0:1} 
+}
+
+function mostrarCarrinho(id){
+     document.getElementById("carrinho").style.display = "block"   
+    tbody = document.querySelector('#tbody')
+    tbody.innerText = ''
+    for(i =0 ;i < id; i++){
+        console.log("menor")
+        let tr = tbody.insertRow()
+        td_tipo = tr.insertCell()
+        td_sabor = tr.insertCell()
+        td_tamanho = tr.insertCell()
+        td_qtd = tr.insertCell()
+        td_preco = tr.insertCell()
+        td_acao = tr.insertCell()
+        
+        // CRIANDO O BOTÃO DE APAGAR O PEDIDO DE FORMA AUTOMATICA
+        let lixeiro = document.createElement("img")
+        lixeiro.src = 'img/lixo.png'
+        td_acao.classList.add("lixo")
+        td_acao.setAttribute("onclick",'remover('+i+')')
+        td_acao.appendChild(lixeiro)
+
+        td_tipo.innerText = resumoPedido[i].tipo
+        td_sabor.innerText = resumoPedido[i].sabor
+        td_tamanho.innerText = resumoPedido[i].tamanho
+        td_qtd.innerText = resumoPedido[i].qtd
+        td_preco.innerText = resumoPedido[i].preco
+
+        // td_acao.innerText = resumoPedido[i].sabor
+    }
+}
+function remover(i){
+    alert("clicou no elemento da linha "+ i)
 }
 
 function adicionarCarrinho(){
@@ -125,34 +163,22 @@ function adicionarCarrinho(){
      
     if(verificandoCampos){
         let pedido = [
-            {nome: '',
-             preco:''  ,
-            tamanho: '',
-            qtd:'',
-            tipo:'',},
+            {id: '', nome: '', preco: '', tamanho: '', qtd: '', tipo: '', sabor: ''}, //ARRAY QUE ESTÁ TODOS OS DADOS DO PEDIDO
         ]
-        
-       
-        
-        
         document.querySelector(".button").type = "reset"
         let tamanhoIndece = verificaTamanho(tamanho,tipo)
-        let preco =  verificandoPreco(saborPastel.value, saborPizza.value, saborPizza1.value, saborPizza2.value,tamanhoIndece,qtd )
 
-                    pedido.nome = nome
-                    pedido.preco = preco
-                    pedido.tamanho = tamanho
-                    pedido.qtd = qtd
-                    pedido.tipo = tipo
-                    console.log(pedido)
-                    resumoPedido.push(pedido)
-        console.log(resumoPedido)
-        // let precoDuoSabor = preco.reduce((acc, produto) => {
-        //    console.log(acc + produto.preco)
-        // })
-        // console.log(precoDuoSabor.acc)
-            // AQUI EU VERIFICO O TAMANHO E ATRIBUIR UM VALOR NUMERICO PARA QUE EU POSSA VERIFICAR O INDECE DO TAMANHO
-        
+        let preco =  verificandoPreco(saborPastel.value, saborPizza.value, saborPizza1.value, saborPizza2.value,tamanhoIndece, qtd, pedido)
+        //AQUI É ONDE ESTÁ SENDO ADICIONADO O PEDIDO NO ARRAY
+        pedido.id = id
+        pedido.nome = nome
+        pedido.preco = preco
+        pedido.tamanho = tamanho
+        pedido.qtd = qtd
+        pedido.tipo = tipo
+        resumoPedido.push(pedido)//AQUI É ONDE ESTÁ SENDO ADICIONADO AO ARRAY QUE VAI CONTER TODOS OS PEDIDOS
+        id++
+        mostrarCarrinho(id)
     }else{
         alert("Verifique se todos os campos foram preenchidos corretamente!!")
         document.querySelector(".button").type = 'button'
